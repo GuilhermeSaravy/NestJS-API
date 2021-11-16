@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   HttpCode,
+  HttpException,
   HttpStatus,
   Param,
   Patch,
@@ -24,7 +25,15 @@ export class CoursesController {
 
   @Get(':id')
   findOne(@Param('id') id) {
-    return this.coursesService.findOne(id);
+    const course = this.coursesService.findOne(id);
+
+    if (!course) {
+      throw new HttpException(
+        `Course ID ${id} not found`,
+        HttpStatus.NOT_FOUND,
+      );
+    }
+    return course;
   }
 
   @Post()
