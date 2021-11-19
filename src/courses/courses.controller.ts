@@ -9,7 +9,6 @@ import {
   Param,
   Patch,
   Post,
-  Put,
   Res,
 } from '@nestjs/common';
 import { CourseService } from './course.service';
